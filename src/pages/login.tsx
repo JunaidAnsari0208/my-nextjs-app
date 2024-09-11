@@ -38,6 +38,38 @@ const Login: React.FC = () => {
     }
   };
 
+  // const handleLogin = async (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   if (!email || !password) {
+  //     setError("Please fill out all fields.");
+  //     return;
+  //   }
+  //   setError(null);
+  //   setLoading(true);
+
+  //   try {
+  //     const res = await signInWithEmailAndPassword(email, password);
+  //     if (!res) throw new Error("Login failed");
+  //     console.log({ res });
+  //     setEmail("");
+  //     setPassword("");
+  //     router.push("/");
+
+  //     await new Promise((resolve) => setTimeout(resolve, 1000));
+  //   } catch (err: any) {
+  //     if (err.code === "auth/wrong-password") {
+  //       setError("Incorrect password. Please try again.");
+  //     } else if (err.code === "auth/user-not-found") {
+  //       setError("User not found. Please check your email or register.");
+  //     } else {
+  //       setError("Login failed. Please try again.");
+  //     }
+  //     console.error("Error during login:", err);
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+
   return (
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
