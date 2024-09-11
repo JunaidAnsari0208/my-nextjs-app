@@ -87,7 +87,7 @@ const Login: React.FC = () => {
         <div className="mt-4 text-center">
           <Link href="/register">
             <span className="text-blue-600 hover:underline cursor-pointer">
-              Don't have an account? Register here
+              Don't have an account? Sign-Up here
             </span>
           </Link>
         </div>

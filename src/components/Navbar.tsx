@@ -1,5 +1,6 @@
-// src/components/Navbar.tsx
+"use client";
 import Link from "next/link";
+import Authentication from "./Authentication";
 
 const Navbar: React.FC = () => {
   return (
@@ -11,11 +12,7 @@ const Navbar: React.FC = () => {
         >
           MediLab
         </Link>
-        <div>
-          <Link href="/login" className="text-blue-600 hover:text-blue-800">
-            Sign-In
-          </Link>
-        </div>
+        <Authentication />
       </div>
     </nav>
   );
