@@ -1,12 +1,17 @@
-// src/pages/login.tsx
+"use client";
+import { auth } from "@/lib/firebase";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
+import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [signInWithEmailAndPassword] = useSignInWithEmailAndPassword(auth);
+  const router = useRouter();
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -18,8 +23,12 @@ const Login: React.FC = () => {
     setLoading(true);
 
     try {
-      // Add authentication logic here (e.g., NextAuth.js or custom API call)
-      // Simulate authentication process
+      const res = await signInWithEmailAndPassword(email, password);
+      console.log({ res });
+      setEmail("");
+      setPassword("");
+      router.push("/");
+
       await new Promise((resolve) => setTimeout(resolve, 1000));
       // On successful login, redirect or update UI as needed
     } catch (err) {
@@ -33,7 +42,7 @@ const Login: React.FC = () => {
     <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
         <h2 className="text-2xl font-bold text-gray-700 mb-6 text-center">
-          Login to MediLab
+          Sign-In to MediLab
         </h2>
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         <form onSubmit={handleLogin}>

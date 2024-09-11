@@ -1,6 +1,8 @@
-// src/pages/register.tsx
+"use client";
+import { auth } from "@/lib/firebase";
 import Link from "next/link";
 import React, { useState } from "react";
+import { useCreateUserWithEmailAndPassword } from "react-firebase-hooks/auth";
 
 const Register: React.FC = () => {
   const [name, setName] = useState("");
@@ -13,10 +15,20 @@ const Register: React.FC = () => {
     "admin" | "doctor" | "drugstore" | ""
   >("");
   const [error, setError] = useState<string | null>(null);
-
-  const handleRegister = (e: React.FormEvent) => {
+  const [createUserWithEmailAndPassword] =
+    useCreateUserWithEmailAndPassword(auth);
+  const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Add registration logic here
+
+    try {
+      const res = await createUserWithEmailAndPassword(email, password);
+      console.log({ res });
+      setEmail("");
+      setPassword("");
+    } catch (e) {
+      console.error(e);
+    }
+
     if (
       !name ||
       !email ||
