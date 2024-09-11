@@ -7,7 +7,6 @@ const Register: React.FC = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
   const [dob, setDob] = useState("");
   const [userType, setUserType] = useState<"customer" | "staff">("customer");
   const [staffRole, setStaffRole] = useState<
@@ -23,7 +22,6 @@ const Register: React.FC = () => {
       !email ||
       !password ||
       !phone ||
-      !address ||
       !dob ||
       (userType === "staff" && !staffRole)
     ) {
