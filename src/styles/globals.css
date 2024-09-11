@@ -2,26 +2,40 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+/* Add to your globals.css or create a new file for custom styles */
+/* Add to your globals.css or create a new file for custom styles */
+/* Add to your globals.css or create a new file for custom styles */
+/* Add to your globals.css or create a new file for custom styles */
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.feature-card {
+  animation: slideUp 0.5s ease-out;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+/* Add to your globals.css or create a new file for custom styles */
+.testimonial-card {
+  transition: transform 0.3s ease;
+}
+.testimonial-card:hover {
+  transform: scale(1.05);
+}
+
+/* Add to your globals.css or create a new file for custom styles */
+.about-us-section {
+  background-color: #f8f8f8;
+  padding: 4rem 0;
+}
+
+.about-us-text {
+  color: #4a4a4a;
+  font-size: 1.125rem;
 }
