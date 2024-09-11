@@ -1,30 +1,41 @@
-import { useAuth } from "@/hooks/useAuth"; // Adjust the path as per your project structure
+import { auth } from "@/lib/firebase";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Navbar: React.FC = () => {
-  const { user, signOut } = useAuth();
+  const [user, loading, error] = useAuthState(auth);
+  const router = useRouter();
+
+  const handleSignOut = async () => {
+    try {
+      await auth.signOut();
+      router.push("/login");
+    } catch (error) {
+      console.error("Sign out failed", error);
+    }
+  };
 
   return (
-    <nav className="bg-white shadow-md">
-      <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-        <Link
-          href="/"
-          className="text-2xl font-bold text-blue-600 hover:text-blue-800"
-        >
-          MediLab
+    <nav className="bg-gray-800 p-4">
+      <div className="container mx-auto flex justify-between items-center">
+        <Link href="/">
+          <span className="text-white text-lg font-bold cursor-pointer">
+            MediLab
+          </span>
         </Link>
         <div>
-          {user ? (
+          {!loading && !user ? (
+            <Link href="/login">
+              <span className="text-white cursor-pointer">Login</span>
+            </Link>
+          ) : (
             <button
-              onClick={signOut}
-              className="text-blue-600 hover:text-blue-800"
+              onClick={handleSignOut}
+              className="text-white bg-red-600 px-4 py-2 rounded hover:bg-red-700 transition"
             >
               Sign Out
             </button>
-          ) : (
-            <Link href="/login" className="text-blue-600 hover:text-blue-800">
-              Login
-            </Link>
           )}
         </div>
       </div>
